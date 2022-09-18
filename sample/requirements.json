@@ -1,0 +1,62 @@
+[
+    {
+        "type": "usecase",
+        "id": "",
+        "title": "",
+        "text": "ユースケースから要求までを管理する",
+        "unique_id": "20220918_093343",
+        "relations": [
+            {
+                "kind": "refine",
+                "to": "20220918_093338"
+            }
+        ]
+    },
+    {
+        "type": "usecase",
+        "id": "",
+        "title": "",
+        "text": "要求に関する情報を様々な形で可視化する",
+        "unique_id": "20220918_095304",
+        "relations": []
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求管理",
+        "text": "",
+        "unique_id": "20220918_093338",
+        "relations": [
+            {
+                "kind": "",
+                "to": "abcde"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求のバージョン管理",
+        "text": "要求のバージョン管理を行う",
+        "unique_id": "20220918_094725",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_093338"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求の編集",
+        "text": "要求の編集が容易に行える",
+        "unique_id": "20220918_094905",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_093338"
+            }
+        ]
+    }
+]
