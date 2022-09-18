@@ -95,9 +95,9 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "Visualize",
         "title": "要求可視化",
-        "text": "要求情報を様々な形式で可視化する",
+        "text": "Visualize requirement information as various format",
         "unique_id": "20220918_130053",
         "relations": []
     },
@@ -289,7 +289,7 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "Visualize.Setting",
         "title": "表示の設定",
         "text": "表示をカスタム可能にする",
         "unique_id": "20220918_131912",
@@ -328,7 +328,7 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "Visualize.Setting.Item",
         "title": "設定可能な項目",
         "text": "ユーザが任意の項目を表示可能なよう設定可能にする",
         "unique_id": "20220918_133643",
