@@ -25,7 +25,8 @@
         "body": [
             "{",
             "    \"kind\": \"\",",
-            "    \"to\": \"\"",
+            "    \"to\": \"\",",
+            "    \"note\": \"\"",
             "}"
         ],
         "description": "Add new relation"
