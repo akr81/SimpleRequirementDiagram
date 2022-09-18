@@ -15,7 +15,10 @@ from src.convert_puml_code import ConvertPumlCode
     "-d", "--detail", help="display text information", is_flag=True, default=False
 )
 @click.option("-w", "--width", help="entity char width", default=24)
-def main(req, target, upper, lower, title, detail, width):
+@click.option(
+    "-o", "--output", help="path to output puml file", default="./sample.puml"
+)
+def main(req, target, upper, lower, title, detail, width, output):
     with open(req, "r", encoding="UTF-8") as f:
         requirements = json.load(f)
     manager = ManageGraph()
@@ -36,10 +39,8 @@ def main(req, target, upper, lower, title, detail, width):
         title = f'"req {title}"'
     puml = converter.convert_to_puml(graph, title)
 
-    with open("sample.puml", "w", encoding="UTF-8") as f:
+    with open(output, "w", encoding="UTF-8") as f:
         f.writelines(puml)
-
-    subprocess.run(["plantuml", "sample.puml"])
 
 
 if __name__ == "__main__":
