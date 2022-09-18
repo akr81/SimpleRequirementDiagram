@@ -11,7 +11,6 @@ class ConvertPumlCode:
         ret = """
 @startuml
 
-scale 2.0
 hide circle
 hide empty members
 hide method
