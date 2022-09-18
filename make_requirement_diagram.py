@@ -10,7 +10,8 @@ from src.convert_puml_code import ConvertPumlCode
 @click.option("-t", "--target", help="target node as unique_id")
 @click.option("-u", "--upper", help="upper level from target", default=100)
 @click.option("-l", "--lower", help="lower level from target", default=100)
-def main(req, target, upper, lower):
+@click.option("-ti", "--title", help="title of diagram", default="")
+def main(req, target, upper, lower, title):
     with open(req, "r", encoding="UTF-8") as f:
         requirements = json.load(f)
     manager = ManageGraph()
@@ -22,7 +23,15 @@ def main(req, target, upper, lower):
         graph = manager.shrink_graph(graph, related_nodes)
 
     converter = ConvertPumlCode({})
-    puml = converter.convert_to_puml(graph)
+    if not title:
+        if not target:
+            title = "req Requirements [all]"
+        else:
+            target_title = graph.nodes(data=True)[target]["title"]
+            title = f'"req {target_title} ' + 'related requirements"'
+    else:
+        title = f'"req {title}"'
+    puml = converter.convert_to_puml(graph, title)
     print(puml)
 
     with open("sample.puml", "w", encoding="UTF-8") as f:
