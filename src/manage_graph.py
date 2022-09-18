@@ -84,3 +84,12 @@ class ManageGraph:
             lower_nodes = list(set(lower_nodes + temp_lower_nodes))
 
         return lower_nodes
+
+    def shrink_graph(self, graph: nx.DiGraph, related_nodes: List[str]) -> nx.DiGraph:
+        # Remove non-related nodes
+        all_nodes = list(graph.nodes())
+        remove_nodes = list(set(all_nodes) - set(related_nodes))
+        for remove_node in remove_nodes:
+            graph.remove_node(remove_node)
+
+        return graph
