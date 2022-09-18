@@ -2,23 +2,32 @@
     {
         "type": "usecase",
         "id": "",
-        "title": "",
-        "text": "ユースケースから要求までを管理する",
+        "title": "ユースケースから要求までを管理する",
+        "text": "",
         "unique_id": "20220918_093343",
         "relations": [
             {
                 "kind": "refine",
                 "to": "20220918_093338"
+            },
+            {
+                "kind": "refine",
+                "to": "20220918_130618"
             }
         ]
     },
     {
         "type": "usecase",
         "id": "",
-        "title": "",
-        "text": "要求に関する情報を様々な形で可視化する",
+        "title": "要求に関する情報を様々な形で可視化する",
+        "text": "",
         "unique_id": "20220918_095304",
-        "relations": []
+        "relations": [
+            {
+                "kind": "refine",
+                "to": "20220918_130053"
+            }
+        ]
     },
     {
         "type": "requirement",
@@ -26,12 +35,7 @@
         "title": "要求管理",
         "text": "",
         "unique_id": "20220918_093338",
-        "relations": [
-            {
-                "kind": "",
-                "to": ""
-            }
-        ]
+        "relations": []
     },
     {
         "type": "requirement",
@@ -56,6 +60,320 @@
             {
                 "kind": "contains",
                 "to": "20220918_093338"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "テキストベース編集",
+        "text": "",
+        "unique_id": "20220918_123906",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_094905"
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "Git",
+        "text": "",
+        "unique_id": "20220918_124102",
+        "relations": [
+            {
+                "kind": "satisfy",
+                "to": "20220918_123906"
+            },
+            {
+                "kind": "satisfy",
+                "to": "20220918_094725"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求可視化",
+        "text": "",
+        "unique_id": "20220918_130053",
+        "relations": []
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "テーブル表示",
+        "text": "",
+        "unique_id": "20220918_141240",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130053"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求図を表示",
+        "text": "",
+        "unique_id": "20220918_130241",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130053"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "エンティティ",
+        "text": "",
+        "unique_id": "20220918_130425",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130618"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "関連",
+        "text": "",
+        "unique_id": "20220918_131141",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130618"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "要求情報",
+        "text": "",
+        "unique_id": "20220918_130618",
+        "relations": []
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "usecase",
+        "text": "",
+        "unique_id": "20220918_131238",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "requirement",
+        "text": "",
+        "unique_id": "20220918_131614",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "block",
+        "text": "",
+        "unique_id": "20220918_131639",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "rationale",
+        "text": "",
+        "unique_id": "20220918_140844",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "根拠(エンティティ)",
+        "text": "",
+        "unique_id": "20220918_142635",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_140844"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "根拠(関連)",
+        "text": "",
+        "unique_id": "20220918_142756",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_140844"
+            },
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_131141"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "問題(エンティティ)",
+        "text": "",
+        "unique_id": "20220918_142812",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_140912"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "問題(関連)",
+        "text": "",
+        "unique_id": "20220918_142916",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_140912"
+            },
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_131141"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "problem",
+        "text": "",
+        "unique_id": "20220918_140912",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "表示の設定",
+        "text": "",
+        "unique_id": "20220918_131912",
+        "relations": [
+            {
+                "kind": "contains",
+                "to": "20220918_130053"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "簡易表示",
+        "text": "",
+        "unique_id": "20220918_132035",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130241"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "詳細表示",
+        "text": "",
+        "unique_id": "20220918_132245",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130241"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "設定可能な項目",
+        "text": "",
+        "unique_id": "20220918_133643",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_131912"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "ターゲット要求",
+        "text": "",
+        "unique_id": "20220918_133816",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_133643"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "ターゲットからの上下距離",
+        "text": "",
+        "unique_id": "20220918_140542",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_133643"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "表示するエンティティ",
+        "text": "",
+        "unique_id": "20220918_140734",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_133643"
             }
         ]
     }
