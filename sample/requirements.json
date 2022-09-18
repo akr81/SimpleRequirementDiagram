@@ -97,7 +97,7 @@
         "type": "requirement",
         "id": "",
         "title": "要求可視化",
-        "text": "",
+        "text": "要求情報を様々な形式で可視化する",
         "unique_id": "20220918_130053",
         "relations": []
     },
@@ -291,7 +291,7 @@
         "type": "requirement",
         "id": "",
         "title": "表示の設定",
-        "text": "",
+        "text": "表示をカスタム可能にする",
         "unique_id": "20220918_131912",
         "relations": [
             {
@@ -330,7 +330,7 @@
         "type": "requirement",
         "id": "",
         "title": "設定可能な項目",
-        "text": "",
+        "text": "ユーザが任意の項目を表示可能なよう設定可能にする",
         "unique_id": "20220918_133643",
         "relations": [
             {
@@ -343,7 +343,7 @@
         "type": "requirement",
         "id": "",
         "title": "ターゲット要求",
-        "text": "",
+        "text": "表示対象とする要求エンティティを指定可能にする",
         "unique_id": "20220918_133816",
         "relations": [
             {
@@ -356,7 +356,7 @@
         "type": "requirement",
         "id": "",
         "title": "ターゲットからの上下距離",
-        "text": "",
+        "text": "ターゲット要求からの相対的な表示対象を指定可能にする",
         "unique_id": "20220918_140542",
         "relations": [
             {
@@ -369,7 +369,7 @@
         "type": "requirement",
         "id": "",
         "title": "表示するエンティティ",
-        "text": "",
+        "text": "表示対象とするエンティティ種別を指定可能にする",
         "unique_id": "20220918_140734",
         "relations": [
             {
