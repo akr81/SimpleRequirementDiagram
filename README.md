@@ -17,6 +17,7 @@ JSON形式で記述された要求情報を、SysMLの要求図ライクなフ�
 |kind|string|refine<br>deriveReqt<br>contains<br>satisfy<br>None|モデル要素間の接続関係を表す<br>Noneはrationale, problemのみ可能|
 |to|string|Any|モデル要素の接続先を指定する<br>unique_idのみ指定可能|
 |note|string|Any|モデル要素間の接続に対してrationaleまたはproblemのモデル要素を関連付ける<br>rationale, problemのunique_idのみ指定可能|
+
 (*1) markdown形式のリンク文字列`[string](link)`が使用可能
 (*2) 後述するVSCodeのスニペットで入力可能
 
@@ -49,5 +50,5 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 
 
 ### プレビュー
-拡張機能[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)がインストールされている場合は、markdownファイルに以下のように記述しておくことで出力結果を確認できます。
+拡張機能[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)がインストールされている場合は、markdownファイルに以下のように記述しておくことで出力結果を確認できます。  
 ![](./image/20220919_063823.png)
