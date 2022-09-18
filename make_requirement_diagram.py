@@ -23,7 +23,6 @@ def main(req, target, upper, lower, title, detail, width):
 
     if target:
         related_nodes = manager.get_target_connected_nodes(graph, target, upper, lower)
-        print(related_nodes)
         graph = manager.shrink_graph(graph, related_nodes)
 
     converter = ConvertPumlCode({"detail": detail, "width": width})
@@ -36,7 +35,6 @@ def main(req, target, upper, lower, title, detail, width):
     else:
         title = f'"req {title}"'
     puml = converter.convert_to_puml(graph, title)
-    print(puml)
 
     with open("sample.puml", "w", encoding="UTF-8") as f:
         f.writelines(puml)

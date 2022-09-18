@@ -151,9 +151,7 @@ end note
         Returns:
             str: inserted string
         """
-        print(len(string), string)
         if " " in string:
-            print("English")
             # For English text
             words = string.split(" ")
             string = ""
