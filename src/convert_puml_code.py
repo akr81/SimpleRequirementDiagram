@@ -17,6 +17,16 @@ hide empty members
 hide method
 skinparam linetype polyline
 skinparam linetype ortho
+skinparam class {
+BackgroundColor White
+ArrowColor Black
+BorderColor Black
+}
+skinparam note {
+BackgroundColor White
+ArrowColor Black
+BorderColor Black
+}
 
 """
         # Add title as package
@@ -55,27 +65,26 @@ skinparam linetype ortho
 
     def _convert_usecase(self, data: Dict[str, Any]) -> str:
         # For PlantUML, the "usecase" entity cannot used on class diagram
-        ret = f"class \"{self._get_title_string(data)}\" as {data['unique_id']} <<usecase>>"
+        title = self._insert_newline(data["title"])
+        ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         return ret
 
     def _convert_requirement(self, data: Dict[str, Any]) -> str:
+        title = self._insert_newline(data["title"])
+        text = self._insert_newline(data["text"])
+
         if self.detail:
-            text = self._insert_newline(data["text"])
-            ret = (
-                f"class \"{data['title']}\" as {data['unique_id']} <<requirement>> "
-                + "{\n"
-            )
+            ret = f"class \"{title}\" as {data['unique_id']} <<requirement>> " + "{\n"
             ret += f"id=\"{data['id']}\"\n"
             ret += f'text="{text}"\n'
             ret += "}\n"
         else:
-            ret = f"class \"{self._get_title_string(data)}\" as {data['unique_id']} <<requirement>>"
+            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<requirement>>"
         return ret
 
     def _convert_block(self, data: Dict[str, Any]) -> str:
-        ret = (
-            f"class \"{self._get_title_string(data)}\" as {data['unique_id']} <<block>>"
-        )
+        title = self._insert_newline(data["title"])
+        ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
         return ret
 
     def _convert_note_entity(self, data: Dict[str, Any]) -> str:
@@ -85,19 +94,20 @@ skinparam linetype ortho
 end note"""
         return ret
 
-    def _get_title_string(self, data: Dict[str, Any]) -> str:
+    def _get_title_string(self, id: str, title: str) -> str:
         """Return title string (ID + title)
 
         Args:
-            data (Dict[str, Any]): Node attribute information
+            id (str): ID of requirement
+            title (str): Title of requirement
 
         Returns:
             str: Title string
         """
-        if data["id"] != "":
-            return f"{data['id']}\\n{data['title']}"
+        if id != "":
+            return f"{id}\\n{title}"
         else:
-            return f"{data['title']}"
+            return f"{title}"
 
     def _convert_edge(self, data: Dict[str, Any]):
         src = data[0]
