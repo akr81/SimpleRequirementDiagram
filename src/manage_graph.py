@@ -28,13 +28,20 @@ class ManageGraph:
         # Second loop: Add relations with node check
         for requirement in requirements:
             for relation in requirement["relations"]:
-                # TODO "to" as list
                 if relation["to"] not in graph.nodes:
                     raise ValueError(
                         f"Unknown node {relation['to']} specified as relation in {requirement}"
                     )
-                graph.add_edge(
-                    requirement["unique_id"], relation["to"], kind=relation["kind"]
-                )
+                if "note" not in relation:
+                    graph.add_edge(
+                        requirement["unique_id"], relation["to"], kind=relation["kind"]
+                    )
+                else:
+                    graph.add_edge(
+                        requirement["unique_id"],
+                        relation["to"],
+                        kind=relation["kind"],
+                        note=relation["note"],
+                    )
 
         return graph
