@@ -87,10 +87,28 @@ BorderColor Black
         return ret
 
     def _convert_note_entity(self, data: Dict[str, Any]) -> str:
+        """Return note type entity string
+        This method is for rationale, problem entity.
+
+        Args:
+            data (Dict[str, Any]): Entity (node)
+
+        Returns:
+            str: PlantUML string for note
+        """
+        # Display longer string from title and text
+        if len(data["title"]) >= len(data["text"]):
+            string = data["title"]
+        else:
+            string = data["text"]
+
+        string = self._insert_newline(string)
+        string = string.replace("\\n", "\n")
         ret = f"""note as {data['unique_id']}
 <<{data['type']}>>
-{data['title']}
-end note"""
+{string}
+end note
+"""
         return ret
 
     def _get_title_string(self, id: str, title: str) -> str:
