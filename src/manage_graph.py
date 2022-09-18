@@ -1,4 +1,5 @@
 import networkx as nx
+import re
 from typing import Dict, List, Any
 
 
@@ -20,8 +21,8 @@ class ManageGraph:
                 requirement["unique_id"],
                 type=requirement["type"],
                 id=requirement["id"],
-                title=requirement["title"],
-                text=requirement["text"],
+                title=self._convert_link(requirement["title"]),
+                text=self._convert_link(requirement["text"]),
                 unique_id=requirement["unique_id"],
             )
 
@@ -55,8 +56,6 @@ class ManageGraph:
         # Get lower nodes
         lower_nodes = self._get_lower_nodes(graph, target_id, down_level)
 
-        print(upper_nodes)
-        print(lower_nodes)
         return list(set(upper_nodes + lower_nodes))
 
     def _get_upper_nodes(
@@ -93,3 +92,24 @@ class ManageGraph:
             graph.remove_node(remove_node)
 
         return graph
+
+    def _convert_link(self, string: str) -> str:
+        """Convert markdown type link to PlantUML type link.
+
+        Args:
+            string (str): String possibly include link.
+
+        Returns:
+            str: Converted string
+        """
+        for _ in range(100):
+            matched = re.findall(r".*(\[.*\]\(.*\)).*", string)
+            if matched:
+                target = matched[0]
+                target_matched = re.findall(r"\[(.*)\]\((.*)\)", target)
+                string = string.replace(
+                    target, f"[[{target_matched[0][1]} {target_matched[0][0]}]]"
+                )
+            else:
+                break
+        return string
