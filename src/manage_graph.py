@@ -14,6 +14,7 @@ class ManageGraph:
         """
         graph = nx.DiGraph()
 
+        # First loop: Add all requirements
         for requirement in requirements:
             graph.add_node(
                 requirement["unique_id"],
@@ -22,8 +23,14 @@ class ManageGraph:
                 title=requirement["title"],
             )
 
+        # Second loop: Add relations with node check
+        for requirement in requirements:
             for relation in requirement["relations"]:
                 # TODO "to" as list
+                if relation["to"] not in graph.nodes:
+                    raise ValueError(
+                        f"Unknown node {relation['to']} specified as relation in {requirement}"
+                    )
                 graph.add_edge(
                     requirement["unique_id"], relation["to"], kind=relation["kind"]
                 )
