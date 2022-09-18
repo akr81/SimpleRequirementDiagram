@@ -21,6 +21,8 @@ class ManageGraph:
                 type=requirement["type"],
                 id=requirement["id"],
                 title=requirement["title"],
+                text=requirement["text"],
+                unique_id=requirement["unique_id"],
             )
 
         # Second loop: Add relations with node check
