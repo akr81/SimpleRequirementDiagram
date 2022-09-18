@@ -32,3 +32,22 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 |Add new relation|r|relasionsのリストに格納する接続関係情報テンプレートを出力します|
 
 ## 要求図出力
+`make_requirement_diagram.py`を実行すると、PlantUML用のコードファイルが出力されます。  
+以下のオプションが利用可能です。
+
+|オプション|利用例|デフォルト値|説明|
+|--|--|--|--|
+|-r<br>--req|-r ./sample/requirements.json|なし|読み込み対象とする要求情報ファイルを指定します|
+|-t<br>--target|-t 20220918_133643|なし|要求図の起点とする要求のunique_idを指定します|
+|-u<br>--upper|-u 3|100|-tで指定した起点とする要求から、上流に遡って表示するレベルを指定します|
+|-l<br>--lower|-l 3|100|-tで指定した起点とする要求から、下流に下って表示するレベルを指定します|
+|-ti<br>--title|-ti "サンプル"|"-tで指定した要素のタイトル related requirements"|要求図のタイトルを指定します|
+|-d<br>--detail|-d|なし|指定すると要求図をtext要素を含めた詳細形式で出力します<br>指定されない場合、要求図はIDとタイトルのみの簡易形式となります|
+|-w<br>--width|-w 24|24|モデルにおいて1行に表示するおおよその文字数を指定します<br>文字列に空白を含まない場合、指定した2/3の値が設定されます|
+|-o<br>--output|-o ./sample.puml|./sample.puml|PlantUML用のコードファイルの出力パスを指定します|
+|--help|--help|なし|オプションのヘルプを表示します|
+
+
+### プレビュー
+拡張機能[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)がインストールされている場合は、markdownファイルに以下のように記述しておくことで出力結果を確認できます。
+![](./image/20220919_063823.png)
