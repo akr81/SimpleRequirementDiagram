@@ -13,11 +13,6 @@ class ConvertPumlCode:
     def convert_to_puml(self, graph: nx.DiGraph, title: str) -> str:
         ret = """
 @startuml
-"""
-        if self.left_to_right:
-            ret += "left to right direction\n"
-
-        ret += """
 hide circle
 hide empty members
 hide method
@@ -35,6 +30,9 @@ BorderColor Black
 }
 
 """
+        if self.left_to_right:
+            ret += "left to right direction\n"
+
         # Add title as package
         # req Title [setting]
         ret += f"package {title} <<Frame>> " + "{\n"
@@ -80,9 +78,10 @@ BorderColor Black
         text = self._insert_newline(data["text"])
 
         if self.detail:
+            # Ignore () as method using {field}
             ret = f"class \"{title}\" as {data['unique_id']} <<requirement>> " + "{\n"
-            ret += f"id=\"{data['id']}\"\n"
-            ret += f'text="{text}"\n'
+            ret += "{field}" + f"id=\"{data['id']}\"\n"
+            ret += "{field}" + f'text="{text}"\n'
             ret += "}\n"
         else:
             ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<requirement>>"
