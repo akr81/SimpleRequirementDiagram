@@ -145,7 +145,7 @@ end note
             ret = f"{dst} <.. {src}: <<deriveReqt>>"
         elif kind == "satisfy":
             ret = f"{dst} <.. {src}: <<satisfy>>"
-        elif kind == "None":
+        elif kind == "problem" or kind == "rationale":
             # For rationale and problem (entiry) only
             ret = f"{dst} <.. {src}"
         else:
