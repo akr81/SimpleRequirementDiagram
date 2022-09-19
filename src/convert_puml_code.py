@@ -56,8 +56,12 @@ BorderColor Black
         ret = ""
         if type == "usecase":
             ret = self._convert_usecase(attr)
-        elif type == "requirement":
-            ret = self._convert_requirement(attr)
+        elif (
+            type == "requirement"
+            or type == "designConstraint"
+            or type == "functionalRequirement"
+        ):
+            ret = self._convert_requirement(attr, type)
         elif type == "block":
             ret = self._convert_block(attr)
         elif type == "rationale" or type == "problem":
@@ -73,13 +77,13 @@ BorderColor Black
         ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         return ret
 
-    def _convert_requirement(self, data: Dict[str, Any]) -> str:
+    def _convert_requirement(self, data: Dict[str, Any], type: str) -> str:
         title = self._insert_newline(data["title"])
         text = self._insert_newline(data["text"])
 
         if self.detail:
             # Ignore () as method using {field}
-            ret = f"class \"{title}\" as {data['unique_id']} <<requirement>> " + "{\n"
+            ret = f"class \"{title}\" as {data['unique_id']} <<{type}>> " + "{\n"
             ret += "{field}" + f"id=\"{data['id']}\"\n"
             ret += "{field}" + f'text="{text}"\n'
             ret += "}\n"
