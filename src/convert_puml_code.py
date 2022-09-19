@@ -1,5 +1,7 @@
-from typing import Dict, List, Any
+from typing import Dict, List, Tuple, Any
 import networkx as nx
+import re
+import unicodedata
 
 
 class ConvertPumlCode:
@@ -151,10 +153,19 @@ end note
         ret = ""
         for node in nodes:
             if node[1]["unique_id"] == note_id:
+                # Display longer string from title and text
+                if len(node[1]["title"]) >= len(node[1]["text"]):
+                    string = node[1]["title"]
+                else:
+                    string = node[1]["text"]
+
+                string = self._insert_newline(string)
+                string = string.replace("\\n", "\n")
+
                 ret += f"""
 note on link
 <<{node[1]["type"]}>>
-{node[1]["title"]}
+{string}
 end note
 """
         return ret
@@ -168,7 +179,19 @@ end note
         Returns:
             str: inserted string
         """
-        if " " in string:
+        char_list = list(string)
+        english_flag = True
+        for char in char_list:
+            if unicodedata.east_asian_width(char) == "W":
+                # Japanese char exist
+                english_flag = False
+                break
+
+        # Convert link to plantuml
+        string = self._convert_link(string)
+        string, stored = self._replace_link(string, "$")
+
+        if english_flag:
             # For English text
             words = string.split(" ")
             string = ""
@@ -192,4 +215,50 @@ end note
                 else:
                     string_as_list.insert(index, "\\n")
             string = "".join(string_as_list)
+
+        # Return unique char to link
+        for link in stored:
+            string = string.replace("$", link, 1)
+
         return string
+
+    def _convert_link(self, string: str) -> str:
+        """Convert markdown type link to PlantUML type link.
+
+        Args:
+            string (str): String possibly include link.
+
+        Returns:
+            str: Converted string
+        """
+        for _ in range(100):
+            matched = re.findall(r".*(\[.*\]\(.*\)).*", string)
+            if matched:
+                target = matched[0]
+                target_matched = re.findall(r"\[(.*)\]\((.*)\)", target)
+                string = string.replace(
+                    target, f"[[{target_matched[0][1]} {target_matched[0][0]}]]"
+                )
+            else:
+                break
+        return string
+
+    def _replace_link(self, string: str, unique: str = "$") -> Tuple[str, List[str]]:
+        """Replace PlantUML type link to unique char.
+
+        Args:
+            string (str): String possibly include link.
+
+        Returns:
+            str: Converted string
+        """
+        stored = []
+        for _ in range(100):
+            matched = re.findall(r".*(\[\[.*\]\]).*", string)
+            if matched:
+                target = matched[0]
+                stored.append(target)
+                string = string.replace(target, unique)
+            else:
+                break
+        return string, stored

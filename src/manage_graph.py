@@ -21,8 +21,8 @@ class ManageGraph:
                 requirement["unique_id"],
                 type=requirement["type"],
                 id=requirement["id"],
-                title=self._convert_link(requirement["title"]),
-                text=self._convert_link(requirement["text"]),
+                title=requirement["title"],
+                text=requirement["text"],
                 unique_id=requirement["unique_id"],
             )
 
@@ -92,24 +92,3 @@ class ManageGraph:
             graph.remove_node(remove_node)
 
         return graph
-
-    def _convert_link(self, string: str) -> str:
-        """Convert markdown type link to PlantUML type link.
-
-        Args:
-            string (str): String possibly include link.
-
-        Returns:
-            str: Converted string
-        """
-        for _ in range(100):
-            matched = re.findall(r".*(\[.*\]\(.*\)).*", string)
-            if matched:
-                target = matched[0]
-                target_matched = re.findall(r"\[(.*)\]\((.*)\)", target)
-                string = string.replace(
-                    target, f"[[{target_matched[0][1]} {target_matched[0][0]}]]"
-                )
-            else:
-                break
-        return string
