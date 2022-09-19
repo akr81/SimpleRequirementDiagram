@@ -30,5 +30,54 @@
             "}"
         ],
         "description": "Add new relation"
+    },
+    "Add entity type: requirement": {
+        "prefix": "r",
+        "body": [
+            "requirement"
+        ],
+        "description": "Add entity type: requirement"
+    },
+    "Add entity type: block": {
+        "prefix": "b",
+        "body": [
+            "block"
+        ],
+        "description": "Add entity type: block"
+    },
+    "Add entity type: rationale": {
+        "prefix": "r",
+        "body": [
+            "rationale"
+        ],
+        "description": "Add entity type: rationale"
+    },
+    "Add entity type: problem": {
+        "prefix": "p",
+        "body": [
+            "problem"
+        ],
+        "description": "Add entity type: problem"
+    },
+    "Add relation type: deriveReqt": {
+        "prefix": "d",
+        "body": [
+            "deriveReqt"
+        ],
+        "description": "Add relation type: deriveReqt"
+    },
+    "Add relation type: contains": {
+        "prefix": "c",
+        "body": [
+            "contains"
+        ],
+        "description": "Add relation type: contains"
+    },
+    "Add relation type: satisfy": {
+        "prefix": "s",
+        "body": [
+            "satisfy"
+        ],
+        "description": "Add relation type: satisfy"
     }
 }
