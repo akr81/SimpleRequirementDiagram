@@ -1,13 +1,13 @@
 import click
 import json
-import subprocess
+import re
 from src.manage_graph import ManageGraph
 from src.convert_puml_code import ConvertPumlCode
 
 
 @click.command()
 @click.option("-r", "--req", help="path to the requirements json file", required=True)
-@click.option("-t", "--target", help="target node as unique_id")
+@click.option("-t", "--target", help="target node as unique_id or title")
 @click.option("-u", "--upper", help="upper level from target", default=100)
 @click.option("-l", "--lower", help="lower level from target", default=100)
 @click.option("-ti", "--title", help="title of diagram", default="")
@@ -25,6 +25,10 @@ def main(req, target, upper, lower, title, detail, width, output):
     graph = manager.make_graph(requirements)
 
     if target:
+        # Target specified as title -> get unique_id
+        if not re.match("[0-9]{8}_[0-9]{6}", target):
+            target = manager.get_unique_id_from_title(graph, target)
+
         related_nodes = manager.get_target_connected_nodes(graph, target, upper, lower)
         graph = manager.shrink_graph(graph, related_nodes)
 

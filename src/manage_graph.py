@@ -92,3 +92,23 @@ class ManageGraph:
             graph.remove_node(remove_node)
 
         return graph
+
+    def get_unique_id_from_title(self, graph: nx.DiGraph, title: str) -> str:
+        """Get unique_id from title string
+
+        Args:
+            graph (nx.DiGraph): Graph
+            title (str): Title string
+
+        Returns:
+            str: unique_id of title entity
+        """
+        title = title.strip()
+        unique_id = ""
+        for node in graph.nodes(data=True):
+            node_title = node[1]["title"]
+            if node_title == title:
+                unique_id = node[1]["unique_id"]
+                break
+
+        return unique_id
