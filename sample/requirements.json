@@ -31,15 +31,15 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "MngReq",
         "title": "要求管理",
-        "text": "",
+        "text": "要求と関連情報を管理する",
         "unique_id": "20220918_093338",
         "relations": []
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "MngReq-100",
         "title": "要求のバージョン管理",
         "text": "要求のバージョン管理を行う",
         "unique_id": "20220918_094725",
@@ -52,7 +52,7 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "MngReq-200",
         "title": "要求の編集",
         "text": "要求の編集が容易に行える",
         "unique_id": "20220918_094905",
@@ -65,7 +65,7 @@
     },
     {
         "type": "requirement",
-        "id": "",
+        "id": "MngReq-210",
         "title": "テキストベース編集",
         "text": "",
         "unique_id": "20220918_123906",
@@ -105,12 +105,110 @@
         "type": "requirement",
         "id": "",
         "title": "テーブル表示",
-        "text": "",
+        "text": "要求情報の一覧性を重視した表形式の表示を行う",
         "unique_id": "20220918_141240",
         "relations": [
             {
                 "kind": "contains",
                 "to": "20220918_130053"
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "ファイル出力",
+        "text": "表形式データの視認性に優れた形式でファイル出力する",
+        "unique_id": "20220919_103419",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_141240",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "Excelファイル",
+        "text": "",
+        "unique_id": "20220919_103633",
+        "relations": [
+            {
+                "kind": "satisfy",
+                "to": "20220919_103419",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "idをキーとして表示",
+        "text": "idをキーとすることで、テーブル表示でも要求の構造を把握しやすくする",
+        "unique_id": "20220919_101556",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_141240",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "idをソート",
+        "text": "idをソートしてから表示する",
+        "unique_id": "20220919_102754",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220919_101556",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "親要求idの列",
+        "text": "親要求のidを表示することで、トレーサビリティを確認可能にする",
+        "unique_id": "20220919_101947",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_141240",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "problem",
+        "id": "",
+        "title": "idが未定のエンティティ",
+        "text": "idが未定のエンティティが存在する。unique_idではなくTBDと表示する方針。",
+        "unique_id": "20220919_102026",
+        "relations": [
+            {
+                "kind": "None",
+                "to": "20220919_101556",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "text列",
+        "text": "要求の内容を表示する。タイトルよりも情報が多いtext列を表示する",
+        "unique_id": "20220919_101807",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_141240",
+                "note": ""
             }
         ]
     },
@@ -248,7 +346,7 @@
         "type": "requirement",
         "id": "",
         "title": "問題(エンティティ)",
-        "text": "",
+        "text": "[[http://google.com sample]]",
         "unique_id": "20220918_142812",
         "relations": [
             {
@@ -381,13 +479,27 @@
     {
         "type": "rationale",
         "id": "",
-        "title": "関係も含めあらゆるモデル要素に付与可能",
+        "title": "関係も含めあらゆるモデル要素に付与可能[sample](http://google.com), [sample2](http://google.com)ほか",
         "text": "",
         "unique_id": "20220918_143446",
         "relations": [
             {
                 "kind": "None",
                 "to": "20220918_142635"
+            }
+        ]
+    },
+    {
+        "type": "rationale",
+        "id": "",
+        "title": "一覧性の高い表示を行うため。また、必要な情報の抜けを明確にするため。",
+        "text": "",
+        "unique_id": "20220919_081835",
+        "relations": [
+            {
+                "kind": "None",
+                "to": "20220918_141240",
+                "note": ""
             }
         ]
     }
