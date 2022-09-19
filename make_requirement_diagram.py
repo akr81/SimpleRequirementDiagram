@@ -12,13 +12,20 @@ from src.convert_puml_code import ConvertPumlCode
 @click.option("-l", "--lower", help="lower level from target", default=100)
 @click.option("-ti", "--title", help="title of diagram", default="")
 @click.option(
+    "-lr",
+    "--left_to_right",
+    help="change plot direction left to right",
+    is_flag=True,
+    default=False,
+)
+@click.option(
     "-d", "--detail", help="display text information", is_flag=True, default=False
 )
 @click.option("-w", "--width", help="entity char width", default=24)
 @click.option(
     "-o", "--output", help="path to output puml file", default="./sample.puml"
 )
-def main(req, target, upper, lower, title, detail, width, output):
+def main(req, target, upper, lower, title, left_to_right, detail, width, output):
     with open(req, "r", encoding="UTF-8") as f:
         requirements = json.load(f)
     manager = ManageGraph()
@@ -32,7 +39,9 @@ def main(req, target, upper, lower, title, detail, width, output):
         related_nodes = manager.get_target_connected_nodes(graph, target, upper, lower)
         graph = manager.shrink_graph(graph, related_nodes)
 
-    converter = ConvertPumlCode({"detail": detail, "width": width})
+    converter = ConvertPumlCode(
+        {"detail": detail, "width": width, "left_to_right": left_to_right}
+    )
     if not title:
         if not target:
             title = '"req Requirements [all]"'

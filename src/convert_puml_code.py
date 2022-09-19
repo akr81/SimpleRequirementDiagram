@@ -8,11 +8,16 @@ class ConvertPumlCode:
     def __init__(self, config: Dict[str, Any]):
         self.detail = config["detail"]
         self.width = config["width"]
+        self.left_to_right = config["left_to_right"]
 
     def convert_to_puml(self, graph: nx.DiGraph, title: str) -> str:
         ret = """
 @startuml
+"""
+        if self.left_to_right:
+            ret += "left to right direction\n"
 
+        ret += """
 hide circle
 hide empty members
 hide method
