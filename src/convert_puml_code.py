@@ -7,6 +7,7 @@ import unicodedata
 class ConvertPumlCode:
     def __init__(self, config: Dict[str, Any]):
         self.detail = config["detail"]
+        self.debug = config["debug"]
         self.width = config["width"]
         self.left_to_right = config["left_to_right"]
 
@@ -81,9 +82,12 @@ BorderColor Black
         title = self._insert_newline(data["title"])
         text = self._insert_newline(data["text"])
 
-        if self.detail:
+        if self.detail or self.debug:
             # Ignore () as method using {field}
             ret = f"class \"{title}\" as {data['unique_id']} <<{type}>> " + "{\n"
+
+            if self.debug:
+                ret += "{field}" + f"unique_id=\"{data['unique_id']}\"\n"
             ret += "{field}" + f"id=\"{data['id']}\"\n"
             ret += "{field}" + f'text="{text}"\n'
             ret += "}\n"

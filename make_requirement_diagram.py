@@ -21,15 +21,25 @@ from src.convert_puml_code import ConvertPumlCode
 @click.option(
     "-d", "--detail", help="display text information", is_flag=True, default=False
 )
+@click.option(
+    "-D",
+    "--debug",
+    help="display text and unique_id information",
+    is_flag=True,
+    default=False,
+)
 @click.option("-w", "--width", help="entity char width", default=24)
 @click.option(
     "-o", "--output", help="path to output puml file", default="./sample.puml"
 )
-def main(req, target, upper, lower, title, left_to_right, detail, width, output):
+def main(req, target, upper, lower, title, left_to_right, detail, debug, width, output):
     with open(req, "r", encoding="UTF-8") as f:
         requirements = json.load(f)
     manager = ManageGraph()
     graph = manager.make_graph(requirements)
+
+    if debug:
+        detail = True
 
     if target:
         # Target specified as title -> get unique_id
@@ -40,7 +50,12 @@ def main(req, target, upper, lower, title, left_to_right, detail, width, output)
         graph = manager.shrink_graph(graph, related_nodes)
 
     converter = ConvertPumlCode(
-        {"detail": detail, "width": width, "left_to_right": left_to_right}
+        {
+            "detail": detail,
+            "width": width,
+            "left_to_right": left_to_right,
+            "debug": debug,
+        }
     )
     if not title:
         if not target:
