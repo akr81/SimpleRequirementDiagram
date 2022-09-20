@@ -18,7 +18,7 @@ JSON形式で記述された要求情報を、PlantUMLのクラス図を利用�
 |to|string|Any|モデル要素の接続先を指定する<br>unique_idのみ指定可能|
 |note|string|Any|モデル要素間の接続に対してrationaleまたはproblemのモデル要素を関連付ける<br>rationale, problemのunique_idのみ指定可能|
 
-(*1) markdown形式のリンク文字列`[string](link)`が使用可能
+(*1) markdown形式のリンク文字列`[string](link)`が使用可能  
 (*2) 後述するVSCodeのスニペットで入力可能
 
 ### VSCodeスニペット
@@ -39,7 +39,7 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 |オプション|利用例|デフォルト値|説明|
 |--|--|--|--|
 |-r<br>--req|-r ./sample/requirements.json|なし|読み込み対象とする要求情報ファイルを指定します|
-|-t<br>--target|-t 20220918_133643|なし|要求図の起点とする要求のunique_id, またはタイトルを指定します|
+|-t<br>--target|-t 20220918_133643|なし|要求図の起点とする要求のunique_id, タイトルまたはidを指定します|
 |-u<br>--upper|-u 3|100|-tで指定した起点とする要求から、上流に遡って表示するレベルを指定します|
 |-l<br>--lower|-l 3|100|-tで指定した起点とする要求から、下流に下って表示するレベルを指定します|
 |-ti<br>--title|-ti "サンプル"|"-tで指定した要素のタイトル related requirements"|要求図のタイトルを指定します|
@@ -50,5 +50,5 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 
 
 ### プレビュー
-拡張機能[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)がインストールされている場合は、markdownファイルに以下のように記述しておくことで出力結果を確認できます。  
+拡張機能[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)がインストールされている場合は、適当なmarkdownファイルに以下のように記述しておくことで出力結果を確認できます。  
 ![](./image/20220919_063823.png)
