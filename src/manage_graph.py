@@ -94,7 +94,10 @@ class ManageGraph:
         return graph
 
     def get_unique_id_from_title(self, graph: nx.DiGraph, title: str) -> str:
-        """Get unique_id from title string
+        """Get unique_id from title or id string
+
+        Note:
+            This method judges with title > id priority and return first detected.
 
         Args:
             graph (nx.DiGraph): Graph
@@ -107,7 +110,8 @@ class ManageGraph:
         unique_id = ""
         for node in graph.nodes(data=True):
             node_title = node[1]["title"]
-            if node_title == title:
+            node_id = node[1]["id"]
+            if node_title == title or node_id == title:
                 unique_id = node[1]["unique_id"]
                 break
 
