@@ -1,5 +1,5 @@
 # SimpleRequirementDiagram
-JSON形式で記述された要求情報を、SysMLの要求図ライクなフォーマットで出力します。
+JSON形式で記述された要求情報を、PlantUMLのクラス図を利用してSysMLの要求図ライクなフォーマットで出力します。
 ![](./image/sample.png)
 
 ## 要求情報(JSONファイル)
