@@ -57,15 +57,8 @@ def main(req, target, upper, lower, title, left_to_right, detail, debug, width, 
             "debug": debug,
         }
     )
-    if not title:
-        if not target:
-            title = '"req Requirements [all]"'
-        else:
-            target_title = graph.nodes(data=True)[target]["title"]
-            title = f'"req {target_title} ' + 'related requirements"'
-    else:
-        title = f'"req {title}"'
-    puml = converter.convert_to_puml(graph, title)
+
+    puml = converter.convert_to_puml(graph, title, target)
 
     with open(output, "w", encoding="UTF-8") as f:
         f.writelines(puml)

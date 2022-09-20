@@ -11,7 +11,16 @@ class ConvertPumlCode:
         self.width = config["width"]
         self.left_to_right = config["left_to_right"]
 
-    def convert_to_puml(self, graph: nx.DiGraph, title: str) -> str:
+    def convert_to_puml(self, graph: nx.DiGraph, title: str, target: str) -> str:
+        if not title:
+            if not target:
+                title = '"req Requirements [all]"'
+            else:
+                target_title = graph.nodes(data=True)[target]["title"]
+                title = f'"req {target_title} ' + 'related requirements"'
+        else:
+            title = f'"req {title}"'
+
         ret = """
 @startuml
 hide circle
