@@ -118,7 +118,10 @@ BorderColor Black
         """
         # For PlantUML, the "usecase" entity cannot used on class diagram
         title = self._insert_newline(data["title"])
-        ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
+        if self.debug:
+            ret = f"class \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
+        else:
+            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         return ret
 
     def _convert_requirement(self, data: Dict[str, Any], type: str) -> str:
@@ -157,7 +160,10 @@ BorderColor Black
             str: PlantUML code
         """
         title = self._insert_newline(data["title"])
-        ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
+        if self.debug:
+            ret = f"class \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
+        else:
+            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
         return ret
 
     def _convert_note_entity(self, data: Dict[str, Any]) -> str:
@@ -178,11 +184,14 @@ BorderColor Black
 
         string = self._insert_newline(string)
         string = string.replace("\\n", "\n")
-        ret = f"""note as {data['unique_id']}
-<<{data['type']}>>
-{string}
-end note
-"""
+        ret = ""
+        ret += f"note as {data['unique_id']}\n"
+        ret += f"<<{data['type']}>>\n"
+        if self.debug:
+            ret += f"unique_id=\"{data['unique_id']}\"\n"
+        ret += f"{string}\n"
+        ret += f"end note\n"
+
         return ret
 
     def _get_title_string(self, id: str, title: str) -> str:
@@ -251,12 +260,13 @@ end note
                 string = self._insert_newline(string)
                 string = string.replace("\\n", "\n")
 
-                ret += f"""
-note on link
-<<{node[1]["type"]}>>
-{string}
-end note
-"""
+                ret = ""
+                ret += f"note on link\n"
+                ret += f"<<{node[1]['type']}>>\n"
+                if self.debug:
+                    ret += f'unique_id="{note_id}"\n'
+                ret += f"{string}\n"
+                ret += f"end note\n"
         return ret
 
     def _insert_newline(self, string: str) -> str:
