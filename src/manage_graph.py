@@ -56,7 +56,10 @@ class ManageGraph:
         # Get lower nodes
         lower_nodes = self._get_lower_nodes(graph, target_id, down_level)
 
-        return list(set(upper_nodes + lower_nodes))
+        # Get orphan nodes as note
+        orphan_nodes = [x for x in nx.isolates(graph)]
+
+        return list(set(upper_nodes + lower_nodes + orphan_nodes))
 
     def _get_upper_nodes(
         self, graph: nx.DiGraph, target_id: str, up_level: int

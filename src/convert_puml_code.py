@@ -47,9 +47,10 @@ BorderColor Black
         # req Title [setting]
         ret += f"package {title} <<Frame>> " + "{\n"
 
-        # Convert nodes
+        # Convert nodes other than orphan
         for node in graph.nodes(data=True):
-            ret += self._convert_node(node) + "\n"
+            if node[0] not in nx.isolates(graph):
+                ret += self._convert_node(node) + "\n"
 
         # Convert edges
         for edge in graph.edges(data=True):
