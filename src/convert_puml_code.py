@@ -45,6 +45,12 @@ hide empty members
 hide method
 skinparam linetype polyline
 skinparam linetype ortho
+skinparam usecase {
+BackgroundColor White
+ArrowColor Black
+BorderColor Black
+FontSize 12
+}
 skinparam class {
 BackgroundColor White
 ArrowColor Black
@@ -54,7 +60,9 @@ skinparam note {
 BackgroundColor White
 ArrowColor Black
 BorderColor Black
+FontSize 12
 }
+allowmixing
 
 """
         if self.left_to_right:
@@ -119,9 +127,9 @@ BorderColor Black
         # For PlantUML, the "usecase" entity cannot used on class diagram
         title = self._insert_newline(data["title"])
         if self.debug:
-            ret = f"class \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
+            ret = f"usecase \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         else:
-            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
+            ret = f"usecase \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         return ret
 
     def _convert_requirement(self, data: Dict[str, Any], type: str) -> str:
