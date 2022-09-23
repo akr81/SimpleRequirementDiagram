@@ -33,7 +33,7 @@
         "type": "requirement",
         "id": "MngReq",
         "title": "要求管理",
-        "text": "要求と関連情報を管理する",
+        "text": "要求と関連情報を管理することができる",
         "unique_id": "20220918_093338",
         "relations": []
     },
@@ -41,7 +41,7 @@
         "type": "requirement",
         "id": "MngReq-100",
         "title": "要求のバージョン管理",
-        "text": "要求のバージョン管理を行う",
+        "text": "要求のバージョン管理が行える",
         "unique_id": "20220918_094725",
         "relations": [
             {
@@ -188,11 +188,11 @@
         "type": "problem",
         "id": "",
         "title": "idが未定のエンティティ",
-        "text": "idが未定のエンティティが存在する。unique_idではなくTBDと表示する方針。",
+        "text": "idが未定のエンティティが存在する。その場合unique_idではなくtitleを表示する方針。",
         "unique_id": "20220919_102026",
         "relations": [
             {
-                "kind": "None",
+                "kind": "problem",
                 "to": "20220919_101556",
                 "note": ""
             }
@@ -216,7 +216,7 @@
         "type": "requirement",
         "id": "",
         "title": "要求図を表示",
-        "text": "",
+        "text": "SysMLの要求図ライクな表示を行う",
         "unique_id": "20220918_130241",
         "relations": [
             {
@@ -228,8 +228,22 @@
     {
         "type": "requirement",
         "id": "",
-        "title": "エンティティ",
-        "text": "",
+        "title": "Entityの横幅指定",
+        "text": "textやタイトルが長くなるとEntityが横に長くなってしまうため、適度に改行させる",
+        "unique_id": "20220919_204850",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130241",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "モデルエンティティ",
+        "text": "モデルエンティティを表現する",
         "unique_id": "20220918_130425",
         "relations": [
             {
@@ -255,58 +269,113 @@
         "type": "requirement",
         "id": "",
         "title": "要求情報",
-        "text": "",
+        "text": "要求情報を構造化データで表す",
         "unique_id": "20220918_130618",
         "relations": []
     },
     {
         "type": "requirement",
         "id": "",
-        "title": "usecase",
-        "text": "",
+        "title": "エンティティ種別",
+        "text": "エンティティの種別を表現する",
         "unique_id": "20220918_131238",
         "relations": [
             {
-                "kind": "contains",
+                "kind": "deriveReqt",
                 "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "type要素",
+        "text": "",
+        "unique_id": "20220919_210716",
+        "relations": [
+            {
+                "kind": "satisfy",
+                "to": "20220918_131238",
+                "note": ""
             }
         ]
     },
     {
         "type": "requirement",
         "id": "",
-        "title": "requirement",
-        "text": "",
+        "title": "可読性の高い識別情報",
+        "text": "エンティティを一意に識別する",
         "unique_id": "20220918_131614",
         "relations": [
             {
-                "kind": "contains",
+                "kind": "deriveReqt",
                 "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "problem",
+        "id": "",
+        "title": "IDは構造情報を含むことが多いため、頻繁に変化する",
+        "text": "",
+        "unique_id": "20220919_211204",
+        "relations": [
+            {
+                "kind": "problem",
+                "to": "20220919_211038",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "id要素",
+        "text": "",
+        "unique_id": "20220919_211038",
+        "relations": [
+            {
+                "kind": "satisfy",
+                "to": "20220918_131614",
+                "note": ""
             }
         ]
     },
     {
         "type": "requirement",
         "id": "",
-        "title": "block",
+        "title": "エンティティ概要",
+        "text": "エンティティの概要を表現する",
+        "unique_id": "20220919_212358",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130425"
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "title要素",
         "text": "",
         "unique_id": "20220918_131639",
         "relations": [
             {
-                "kind": "contains",
-                "to": "20220918_130425"
+                "kind": "satisfy",
+                "to": "20220919_212358"
             }
         ]
     },
     {
         "type": "requirement",
         "id": "",
-        "title": "rationale",
-        "text": "",
+        "title": "text要素",
+        "text": "エンティティの詳細説明を表現する",
         "unique_id": "20220918_140844",
         "relations": [
             {
-                "kind": "contains",
+                "kind": "deriveReqt",
                 "to": "20220918_130425"
             }
         ]
@@ -314,14 +383,28 @@
     {
         "type": "requirement",
         "id": "",
-        "title": "根拠(エンティティ)",
-        "text": "",
+        "title": "unique_id要素",
+        "text": "エンティティを一意に表すIDを表現する",
+        "unique_id": "20220919_210442",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130425",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "根拠(entity)",
+        "text": "entityに付与できる根拠(rationale)",
         "unique_id": "20220918_142635",
         "relations": [
             {
                 "kind": "deriveReqt",
                 "to": "20220918_140844",
-                "note": "20220918_143446"
+                "note": ""
             }
         ]
     },
@@ -346,7 +429,7 @@
         "type": "requirement",
         "id": "",
         "title": "問題(エンティティ)",
-        "text": "[[http://google.com sample]]",
+        "text": "エンティティに付与できる問題(problem)",
         "unique_id": "20220918_142812",
         "relations": [
             {
@@ -402,7 +485,7 @@
         "type": "requirement",
         "id": "",
         "title": "簡易表示",
-        "text": "",
+        "text": "ステレオタイプとID、タイトルのみの表示を行う",
         "unique_id": "20220918_132035",
         "relations": [
             {
@@ -415,7 +498,7 @@
         "type": "requirement",
         "id": "",
         "title": "詳細表示",
-        "text": "",
+        "text": "ステレオタイプとタイトルを1ブロック目に、IDとテキストを2ブロック目に表示する",
         "unique_id": "20220918_132245",
         "relations": [
             {
@@ -479,12 +562,12 @@
     {
         "type": "rationale",
         "id": "",
-        "title": "関係も含めあらゆるモデル要素に付与可能[sample](http://google.com), [sample2](http://google.com)ほか",
+        "title": "関係も含めあらゆるモデル要素に付与可能",
         "text": "",
         "unique_id": "20220918_143446",
         "relations": [
             {
-                "kind": "None",
+                "kind": "rationale",
                 "to": "20220918_142635"
             }
         ]
@@ -497,8 +580,106 @@
         "unique_id": "20220919_081835",
         "relations": [
             {
-                "kind": "None",
-                "to": "20220918_141240",
+                "kind": "rationale",
+                "to": "20220919_081835",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "拡張性",
+        "text": "ステレオタイプや接続関係を拡張可能にする",
+        "unique_id": "20220920_071143",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130618",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "rationale",
+        "id": "",
+        "title": "",
+        "text": "接続関係を追加する際には、unique_idが明確であると利用しやすいため",
+        "unique_id": "20220923_101951",
+        "relations": [
+            {
+                "kind": "rationale",
+                "to": "20220923_101458",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "problem",
+        "id": "",
+        "title": "",
+        "text": "エンティティとして作成しておき参照する必要があるが、根拠エンティティが接続条件をもたないと表示されない。したがって二重に表示されてしまう",
+        "unique_id": "20220923_102553",
+        "relations": [
+            {
+                "kind": "problem",
+                "to": "20220918_142756",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "problem",
+        "id": "",
+        "title": "詳細はTBD",
+        "text": "",
+        "unique_id": "20220920_071408",
+        "relations": [
+            {
+                "kind": "problem",
+                "to": "20220920_071143",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "problem",
+        "id": "",
+        "title": "全角文字と半角文字が混在するとズレが生じる",
+        "text": "",
+        "unique_id": "20220923_100801",
+        "relations": [
+            {
+                "kind": "problem",
+                "to": "20220919_204850",
+                "note": ""
+            }
+        ]
+    },
+    {
+        "type": "requirement",
+        "id": "",
+        "title": "デバッグ表示",
+        "text": "ステレオタイプとタイトルを1ブロック目に、unique_idとID、テキストを2ブロック目に表示する。",
+        "unique_id": "20220923_101458",
+        "relations": [
+            {
+                "kind": "deriveReqt",
+                "to": "20220918_130241",
+                "note": "20220923_101951"
+            }
+        ]
+    },
+    {
+        "type": "block",
+        "id": "",
+        "title": "Markdownファイル",
+        "text": "",
+        "unique_id": "20220923_100358",
+        "relations": [
+            {
+                "kind": "satisfy",
+                "to": "20220919_103419",
                 "note": ""
             }
         ]
