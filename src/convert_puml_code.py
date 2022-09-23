@@ -157,7 +157,7 @@ end note
         if kind == "contains":
             ret = f"{dst} +-- {src}"
         elif kind == "refine":
-            ret = f"{src} ..> {dst}: <<refine>>"
+            ret = f"{dst} <.. {src}: <<refine>>"
         elif kind == "deriveReqt":
             ret = f"{dst} <.. {src}: <<deriveReqt>>"
         elif kind == "satisfy":
