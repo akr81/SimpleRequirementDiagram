@@ -573,20 +573,6 @@
         ]
     },
     {
-        "type": "rationale",
-        "id": "",
-        "title": "一覧性の高い表示を行うため。また、必要な情報の抜けを明確にするため。",
-        "text": "",
-        "unique_id": "20220919_081835",
-        "relations": [
-            {
-                "kind": "rationale",
-                "to": "20220919_081835",
-                "note": ""
-            }
-        ]
-    },
-    {
         "type": "requirement",
         "id": "",
         "title": "拡張性",
