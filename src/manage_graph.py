@@ -1,5 +1,4 @@
 import networkx as nx
-import re
 from typing import Dict, List, Any
 
 
@@ -50,6 +49,17 @@ class ManageGraph:
     def get_target_connected_nodes(
         self, graph: nx.DiGraph, target_id: str, up_level: int, down_level
     ) -> List[str]:
+        """Get nodes information that connected to target node.
+
+        Args:
+            graph (nx.DiGraph): Graph
+            target_id (str): Target node ID
+            up_level (int): Upper search level
+            down_level (_type_): Lower search level
+
+        Returns:
+            List[str]: List of connected nodes
+        """
         # Get upper nodes
         upper_nodes = self._get_upper_nodes(graph, target_id, up_level)
 
@@ -64,6 +74,16 @@ class ManageGraph:
     def _get_upper_nodes(
         self, graph: nx.DiGraph, target_id: str, up_level: int
     ) -> List[str]:
+        """Get nodes information that upstream of specified target
+
+        Args:
+            graph (nx.DiGraph): Graph of requirements
+            target_id (str): Target node ID
+            up_level (int): Upper search level
+
+        Returns:
+            List[str]: List of connected nodes
+        """
         upper_nodes = [target_id]
         for _ in range(up_level):
             temp_upper_nodes = []
@@ -77,6 +97,16 @@ class ManageGraph:
     def _get_lower_nodes(
         self, graph: nx.DiGraph, target_id: str, down_level: int
     ) -> List[str]:
+        """Get nodes information that downstream of specified target
+
+        Args:
+            graph (nx.DiGraph): Graph of requirements
+            target_id (str): Target node ID
+            down_level (int): Lower search level
+
+        Returns:
+            List[str]: List of connected nodes
+        """
         lower_nodes = [target_id]
         for _ in range(down_level):
             temp_lower_nodes = []
@@ -88,6 +118,15 @@ class ManageGraph:
         return lower_nodes
 
     def shrink_graph(self, graph: nx.DiGraph, related_nodes: List[str]) -> nx.DiGraph:
+        """Shrink graph information with specified nodes.
+
+        Args:
+            graph (nx.DiGraph): Graph of requirements
+            related_nodes (List[str]): List of nodes information
+
+        Returns:
+            nx.DiGraph: Shrinked graph
+        """
         # Remove non-related nodes
         all_nodes = list(graph.nodes())
         remove_nodes = list(set(all_nodes) - set(related_nodes))

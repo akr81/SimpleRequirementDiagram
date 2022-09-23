@@ -78,11 +78,11 @@ BorderColor Black
         ret += "\n}\n@enduml\n"
         return ret
 
-    def _convert_node(self, node: List[str, Dict]) -> str:
+    def _convert_node(self, node: Tuple[str, Dict]) -> str:
         """Convert node information to PlantUML code.
 
         Args:
-            node (List[str, Dict]): Node information.
+            node (Tuple[str, Dict]): Node information.
 
         Returns:
             str: PlantUML code.
