@@ -5,13 +5,30 @@ import unicodedata
 
 
 class ConvertPumlCode:
+    """Convert graph to PlantUML code."""
+
     def __init__(self, config: Dict[str, Any]):
+        """Initializer
+
+        Args:
+            config (Dict[str, Any]): Config settings
+        """
         self.detail = config["detail"]
         self.debug = config["debug"]
         self.width = config["width"]
         self.left_to_right = config["left_to_right"]
 
     def convert_to_puml(self, graph: nx.DiGraph, title: str, target: str) -> str:
+        """Convert graph to requirement diagram as PlantUML code string.
+
+        Args:
+            graph (nx.DiGraph): Graph of requirements.
+            title (str): Title of diagram.
+            target (str): Target requirement.
+
+        Returns:
+            str: PlantUML code
+        """
         if not title:
             if not target:
                 title = '"req Requirements [all]"'
@@ -61,7 +78,15 @@ BorderColor Black
         ret += "\n}\n@enduml\n"
         return ret
 
-    def _convert_node(self, node):
+    def _convert_node(self, node: List[str, Dict]) -> str:
+        """Convert node information to PlantUML code.
+
+        Args:
+            node (List[str, Dict]): Node information.
+
+        Returns:
+            str: PlantUML code.
+        """
         attr = node[1]
         type = attr["type"]
         ret = ""
@@ -83,12 +108,29 @@ BorderColor Black
         return ret
 
     def _convert_usecase(self, data: Dict[str, Any]) -> str:
+        """Convert usecase information to PlantUML code.
+
+        Args:
+            data (Dict[str, Any]): Usecase information
+
+        Returns:
+            str: PlantUML code
+        """
         # For PlantUML, the "usecase" entity cannot used on class diagram
         title = self._insert_newline(data["title"])
         ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<usecase>>"
         return ret
 
     def _convert_requirement(self, data: Dict[str, Any], type: str) -> str:
+        """Convert requirement information to PlantUML code.
+
+        Args:
+            data (Dict[str, Any]): Requirement information
+            type (str): Type of requirement
+
+        Returns:
+            str: PlantUML code
+        """
         title = self._insert_newline(data["title"])
         text = self._insert_newline(data["text"])
 
@@ -106,6 +148,14 @@ BorderColor Black
         return ret
 
     def _convert_block(self, data: Dict[str, Any]) -> str:
+        """Convert block information to PlantUML code.
+
+        Args:
+            data (Dict[str, Any]): Block information
+
+        Returns:
+            str: PlantUML code
+        """
         title = self._insert_newline(data["title"])
         ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
         return ret
@@ -151,6 +201,14 @@ end note
             return f"{title}"
 
     def _convert_edge(self, data: Dict[str, Any]):
+        """Return relationship string
+
+        Args:
+            data (Dict[str, Any]): Relationship (node)
+
+        Returns:
+            str: PlantUML string
+        """
         src = data[0]
         dst = data[1]
         kind = data[2]["kind"]
@@ -172,6 +230,15 @@ end note
         return ret
 
     def _convert_note_edge(self, note_id: str, nodes: List[Dict[str, Any]]) -> str:
+        """Return note type entity string
+        This method is for rationale, problem entity connected to relation.
+
+        Args:
+            data (Dict[str, Any]): Entity (node)
+
+        Returns:
+            str: PlantUML string for note
+        """
         ret = ""
         for node in nodes:
             if node[1]["unique_id"] == note_id:
