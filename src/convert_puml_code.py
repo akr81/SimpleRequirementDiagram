@@ -240,7 +240,7 @@ allowmixing
             ret = f"{dst} <.. {src}: <<satisfy>>"
         elif kind == "problem" or kind == "rationale":
             # For rationale and problem (entiry) only
-            ret = f"{dst} <.. {src}"
+            ret = f"{dst} .. {src}"
         else:
             raise ValueError(f"No implement exist for relation kind: {kind}")
 
