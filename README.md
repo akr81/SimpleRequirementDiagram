@@ -28,7 +28,7 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 
 |名称|ショートカット|説明|
 |--|--|--|
-|Add new requirement|a|relations以外の要求情報テンプレートを出力します<br>unique_idとして、現在日時が自動的に入力されます|
+|Add new requirement|a|relations以外の要求情報テンプレートを出力します<br>unique_idとして、現在日時が自動的に入力されます<br>また、接続先としてクリップボードの内容が入力されます。(事前に接続先としたい要求のunique_idをクリップボードにコピーしておく必要があります)|
 |Add datetime as unique id|u|現在日時を出力します<br>unique_idのみを更新する場合に利用します|
 |Add new relation|r|relasionsのリストに格納する接続関係情報テンプレートを出力します|
 
@@ -44,6 +44,7 @@ jsonファイルへのユーザスニペットとしてコピー&ペーストし
 |-l<br>--lower|-l 3|100|-tで指定した起点とする要求から、下流に下って表示するレベルを指定します|
 |-ti<br>--title|-ti "サンプル"|"-tで指定した要素のタイトル related requirements"|要求図のタイトルを指定します|
 |-d<br>--detail|-d|なし|指定すると要求図をtext要素を含めた詳細形式で出力します<br>指定されない場合、要求図はIDとタイトルのみの簡易形式となります|
+|-D<br>--debug|-D|なし|指定するとdetailに加え、unique_idも表示します|
 |-w<br>--width|-w 24|24|モデルにおいて1行に表示するおおよその文字数を指定します<br>文字列に空白を含まない場合、指定した2/3の値が設定されます|
 |-o<br>--output|-o ./sample.puml|./sample.puml|PlantUML用のコードファイルの出力パスを指定します|
 |--help|--help|なし|オプションのヘルプを表示します|
