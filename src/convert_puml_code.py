@@ -102,12 +102,15 @@ allowmixing
             ret = self._convert_usecase(attr)
         elif (
             type == "requirement"
-            or type == "designConstraint"
             or type == "functionalRequirement"
+            or type == "interfaceRequirement"
+            or type == "performanceRequirement"
+            or type == "physicalRequirement"
+            or type == "designConstraint"
         ):
             ret = self._convert_requirement(attr, type)
-        elif type == "block":
-            ret = self._convert_block(attr)
+        elif type == "block" or type == "testCase":
+            ret = self._convert_block(attr, type)
         elif type == "rationale" or type == "problem":
             ret = self._convert_note_entity(attr)
         else:
@@ -158,20 +161,21 @@ allowmixing
             ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<requirement>>"
         return ret
 
-    def _convert_block(self, data: Dict[str, Any]) -> str:
+    def _convert_block(self, data: Dict[str, Any], type: str) -> str:
         """Convert block information to PlantUML code.
 
         Args:
             data (Dict[str, Any]): Block information
+            type (str): Type information
 
         Returns:
             str: PlantUML code
         """
         title = self._insert_newline(data["title"])
         if self.debug:
-            ret = f"class \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
+            ret = f"class \"unique_id=\"{data['unique_id']}\"\\n{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<{type}>>"
         else:
-            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<block>>"
+            ret = f"class \"{self._get_title_string(data['id'], title)}\" as {data['unique_id']} <<{type}>>"
         return ret
 
     def _convert_note_entity(self, data: Dict[str, Any]) -> str:
@@ -232,12 +236,15 @@ allowmixing
         ret = ""
         if kind == "contains":
             ret = f"{dst} +-- {src}"
-        elif kind == "refine":
-            ret = f"{dst} <.. {src}: <<refine>>"
-        elif kind == "deriveReqt":
-            ret = f"{dst} <.. {src}: <<deriveReqt>>"
-        elif kind == "satisfy":
-            ret = f"{dst} <.. {src}: <<satisfy>>"
+        elif (
+            kind == "refine"
+            or kind == "deriveReqt"
+            or kind == "satisfy"
+            or kind == "verify"
+            or kind == "copy"
+            or kind == "trace"
+        ):
+            ret = f"{dst} <.. {src}: <<{kind}>>"
         elif kind == "problem" or kind == "rationale":
             # For rationale and problem (entiry) only
             ret = f"{dst} .. {src}"
