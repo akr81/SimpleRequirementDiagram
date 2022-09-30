@@ -55,7 +55,7 @@ class ManageGraph:
             graph (nx.DiGraph): Graph
             target_id (str): Target node ID
             up_level (int): Upper search level
-            down_level (_type_): Lower search level
+            down_level (int): Lower search level
 
         Returns:
             List[str]: List of connected nodes
