@@ -234,7 +234,7 @@ allowmixing
         dst = data[1]
         kind = data[2]["kind"]
         ret = ""
-        if kind == "contains":
+        if kind == "containment":
             ret = f"{dst} +-- {src}"
         elif (
             kind == "refine"
