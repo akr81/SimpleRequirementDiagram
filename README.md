@@ -14,7 +14,7 @@ JSON形式で記述された要求情報を、PlantUMLのクラス図を利用�
 |text|string|Any|モデル要素の説明(*1)|
 |unique_id|string|Any|モデル要素を一意に表す文字列(*2)|
 |relations|list|-|モデル要素間の接続関係を表す<br>下記kind, to, noteのみもつことが可能|
-|kind|string|refine<br>deriveReqt<br>contains<br>satisfy<br>rationale<br>problem|モデル要素間の接続関係を表す|
+|kind|string|refine<br>deriveReqt<br>containment<br>satisfy<br>rationale<br>problem|モデル要素間の接続関係を表す|
 |to|string|Any|モデル要素の接続先を指定する<br>unique_idのみ指定可能|
 |note|string|Any|モデル要素間の接続に対してrationaleまたはproblemのモデル要素を関連付ける<br>rationale, problemのunique_idのみ指定可能|
 
