@@ -2,6 +2,7 @@ import json
 import networkx as nx
 import re
 import typer
+from typing import Union
 
 from src.manage_graph import ManageGraph
 from src.convert_puml_code import ConvertPumlCode
@@ -12,7 +13,7 @@ app = typer.Typer(add_completion=False)
 class MakeRequirementDiagram:
     def make_requirement_diagram(
         self,
-        requirement: str,
+        requirement: Union[str, nx.DiGraph],
         target: str = None,
         title: str = None,
         detail: bool = False,
@@ -23,10 +24,15 @@ class MakeRequirementDiagram:
         width: int = 24,
         output: str = "./sample.puml",
     ):
-        with open(requirement, "r", encoding="UTF-8") as f:
-            requirements = json.load(f)
         manager = ManageGraph()
-        graph = manager.make_graph(requirements)
+        if isinstance(requirement, str):
+            with open(requirement, "r", encoding="UTF-8") as f:
+                requirements = json.load(f)
+            graph = manager.make_graph(requirements)
+        elif isinstance(requirement, nx.DiGraph):
+            graph = requirement
+        else:
+            raise ValueError(f"Unexpected requirement specified: {type(requirement)}")
 
         if debug:
             detail = True
